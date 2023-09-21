@@ -1,9 +1,12 @@
 import 'package:borrowult/utils/theme_consts.dart';
 import 'package:borrowult/widgets/textform_input.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:borrowult/widgets/custom_popmenu_button.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SellTabContent extends StatefulWidget {
-  const SellTabContent({super.key});
+  const SellTabContent({Key? key});
 
   @override
   _SellTabContentState createState() => _SellTabContentState();
@@ -25,71 +28,108 @@ class _SellTabContentState extends State<SellTabContent> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: double.maxFinite,
-      padding: EdgeInsets.all(20),
-      child: Expanded(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            TextFormWidget(
-                textHint: "Item Title(Keep it short)......",
-                maxLines: 1,
-                controller: _titleController),
+      padding: const EdgeInsets.fromLTRB(4, 0, 4, 0),
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          TextFormWidget(
+              textHint: "Item Title(Keep it short)......",
+              maxLines: 1,
+              controller: _titleController),
+          const SizedBox(
+            height: 10,
+          ),
+          TextFormWidget(
+              textHint: "Item Description.......",
+              maxLines: 5,
+              controller: _descriptionController),
+          SizedBox(
+            height: 15,
+          ),
+          Row(
+            children: [
+              const Text("Post the item For:     "),
+              PopMenuCustom(
+                  choice1: "   Sale              ",
+                  choice2: "   Rent              "),
+              // const SizedBox(height:,)
+            ],
+          ),
+          SizedBox(
+            height: 15,
+          ),
 
-            TextFormWidget(
-                textHint: "Item Description.......",
-                maxLines: 4,
-                controller: _descriptionController),
-            Expanded(
-              child: Row(
-                children: [
-                  Text("Post the item For:"),
-                  Container(
-                    height: 26,
-                    width: 97,
-                    child: DropdownButtonFormField<String>(
-                      decoration: const InputDecoration(
-                          focusColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(8)),
-                          ),
-                          fillColor: Colors.white),
-                      elevation: 20,
-                      value: _selectedCategory,
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedCategory = value!;
-                        });
-                      },
-                      items: ['For Sale', 'For Rent', 'For Exchange', 'Other']
-                          .map<DropdownMenuItem<String>>(
-                            (value) => DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
+          // Add your image upload widget here
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+                color: primary, borderRadius: BorderRadius.circular(20)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const Text(
+                  "Upload Your Image",
+                  style: TextStyle(fontSize: 17),
+                ),
+                const Text(
+                  "Maximum 100 KB image size allowed",
+                  style: TextStyle(fontSize: 7, color: Colors.white54),
+                ),
+                DottedBorder(
+                  padding: const EdgeInsets.all(20),
+                  color: Colors.white,
+                  borderType: BorderType.RRect,
+                  radius: const Radius.circular(20),
+                  child: Container(
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                            "assets/clarity_upload-cloud-line.svg"),
+                        const Text(
+                          "Select Image to Upload",
+                          style: TextStyle(fontSize: 7, color: Colors.white54),
+                        ),
+                        const Text(
+                          "OR",
+                          style: TextStyle(fontSize: 12, color: Colors.white70),
+                        ),
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              "assets/Ellipse 3.svg",
                             ),
-                          )
-                          .toList(),
+                            SvgPicture.asset("assets/camera.svg")
+                          ],
+                        )
+                      ],
                     ),
                   ),
-                ],
-              ),
+                )
+              ],
             ),
+          ),
 
-            // Add your image upload widget here
+          ElevatedButton(
+            style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(Size(20, 23)),
+                foregroundColor: MaterialStateProperty.all(Colors.white),
+                backgroundColor:
+                    MaterialStateProperty.all(Color.fromRGBO(13, 147, 147, 1))),
+            onPressed: () {
+              // Handle the post button click
+              String title = _titleController.text;
+              String description = _descriptionController.text;
+              String category = _selectedCategory;
 
-            ElevatedButton(
-              onPressed: () {
-                // Handle the post button click
-                String title = _titleController.text;
-                String description = _descriptionController.text;
-                String category = _selectedCategory;
-
-                // You can now post this data to your backend or perform any desired action
-              },
-              child: const Text('Post'),
-            ),
-          ],
-        ),
+              // You can now post this data to your backend or perform any desired action
+            },
+            child: const Text('Post'),
+          ),
+        ],
       ),
     );
   }

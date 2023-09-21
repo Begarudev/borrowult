@@ -25,6 +25,9 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     return Scaffold(
       backgroundColor: primary,
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(166, 32, 83, 149),
+        surfaceTintColor: Colors.black,
+        elevation: 10,
         leading: Builder(
           builder: (context) => IconButton(
             onPressed: () {
@@ -72,7 +75,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
       body: [
         const LendTab(),
         const PostTab(),
-        const BorrowTab(),  
+        const BorrowTab(),
 
         // PostTab(),
         // BorrowTab(),
@@ -80,5 +83,3 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
     );
   }
 }
-
-

@@ -35,6 +35,7 @@ class _DrawerAppState extends State<DrawerApp> {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: onPrimary,
+      elevation: 20,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
         child: Column(
@@ -117,7 +118,7 @@ class _DrawerAppState extends State<DrawerApp> {
                   text: "Sign Out",
                   onTap: () {},
                 ),
-                Divider(
+                const Divider(
                   color: Colors.white,
                   indent: 20,
                   endIndent: 20,

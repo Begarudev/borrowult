@@ -37,9 +37,9 @@ class _TextFormWidgetState extends State<TextFormWidget> {
     return TextFormField(
       maxLines: widget.maxLines,
       controller: _controller,
-      style: TextStyle(color: Colors.white), // Text color
+      style: const TextStyle(color: Colors.white), // Text color
       decoration: InputDecoration(
-        enabledBorder: OutlineInputBorder(
+        enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
           borderSide: BorderSide(color: Colors.transparent),
         ),
@@ -47,7 +47,7 @@ class _TextFormWidgetState extends State<TextFormWidget> {
         filled: true,
         border: InputBorder.none,
         hintText: widget.textHint,
-        hintStyle: TextStyle(
+        hintStyle: const TextStyle(
           fontSize: 12.06,
           color: Color.fromARGB(138, 255, 255, 255),
         ),
