@@ -63,7 +63,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
               ),
               label: 'Post'),
           NavigationDestination(
-              icon: SvgPicture.asset("assets/borrow_tab.svg"), label: "label")
+              icon: SvgPicture.asset("assets/borrow_tab.svg"), label: "label",)
         ],
         selectedIndex: currentPageIndex,
         onDestinationSelected: (int index) {
