@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
         //     webScreenLayout: WebScreenLayout(),
         //     MobileScreenLayout: MobileScreenLayout()),
         home: StreamBuilder(
-          stream: AuthMethods().authChanges,
+           stream: GoogleSignInService().authChanges,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -65,6 +65,7 @@ class MyApp extends StatelessWidget {
             }
 
             return const LoginScreen();
+            
           },
         ));
   }

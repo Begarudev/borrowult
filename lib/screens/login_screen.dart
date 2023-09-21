@@ -12,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final AuthMethods _authMethods = AuthMethods();
+  final GoogleSignInService _authMethods = GoogleSignInService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

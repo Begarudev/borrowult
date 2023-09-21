@@ -14,7 +14,7 @@ class DrawerApp extends StatefulWidget {
 }
 
 class _DrawerAppState extends State<DrawerApp> {
-  AuthMethods authMethods = AuthMethods();
+  GoogleSignInService authMethods = GoogleSignInService();
   String? profilePictureUrl;
 
   @override
